@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>留言簿</title>
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+<div id="main">
+    <h1>留言簿</h1>
+
+    <div id="form-area">
+        <p>请尽情留言吧:</p>
+
+        <form action="/post" method="post">
+            <table>
+                <tr>
+                    <th>姓名</th>
+                    <td>
+                        <input type="text" size="20" name="name">
+                    </td>
+                </tr>
+                <tr>
+                    <th>内容</th>
+                    <td>
+                        <textarea rows="5" cols="40" name="comment"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <button type="submit">提交</button>
+            </p>
+        </form>
+    </div>
+    <div id="entries-area">
+        <h2>留言历史信息</h2>
+
+        <div class="entry">
+            {% for greeting in greeting_list%}
+            <h3>{{greeting.name}}
+                留言于({{greeting.create_at}}:)</h3>
+
+            <p>{{greeting.comment}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
